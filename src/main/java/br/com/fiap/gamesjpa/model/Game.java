@@ -1,11 +1,28 @@
 package br.com.fiap.gamesjpa.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+
+@Entity
+@Table(name="tbl_games")
 public class Game {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator= "TBL_GAMES_SEQ")
+    @SequenceGenerator(
+            name = "TBL_GAMES_SEQ",
+            sequenceName = "TBL_GAMES_SEQ",
+            allocationSize=1
+    )
     private Long id;
+
     private String title;
+
+    @Column(name="release_date")
     private LocalDate releaseDate;
+
     private Double price;
     private String developer;
     private Boolean finished;
