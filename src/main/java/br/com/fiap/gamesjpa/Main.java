@@ -1,4 +1,4 @@
-package br.com.fiap;
+package br.com.fiap.gamesjpa;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
