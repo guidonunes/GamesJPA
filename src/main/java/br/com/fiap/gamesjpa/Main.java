@@ -8,34 +8,81 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
 
         EntityManager em = Connection.getEntityManager();
+
+//        search(em);
+        //insertGame(em);
+        //listAllGames(em);
+        updateGame(em);
+    }
+
+    public static void listAllGames(EntityManager em) {
         GameDao gameDao = new GameDao(em);
+        List<Game> games = gameDao.listAllGames();
 
-        System.out.println("Connected successfully 🚀");
-
-        Game game2 = new Game();
-        game2.setId(21L);
-        game2.setTitle("Mafia");
-        game2.setReleaseDate(LocalDate.of(2020, 2, 12));
-        game2.setPrice(99.9);
-        game2.setDeveloper("Activision, Remedy");
-        game2.setFinished(false);
-        game2.setCategory("Shooting");
+        for(Game game : games){
+            System.out.println(game.getTitle());
+        }
+    }
 
 
+    public static void search (EntityManager em) {
+        GameDao dao = new GameDao(em);
+        Game game1 = new Game();
+        game1.setId(3L);
 
+        Game foundedGame = dao.findGameById(game1);
+
+        if (foundedGame != null) {
+            System.out.println("Game found");
+            System.out.println("ID: " + foundedGame);
+        } else {
+            System.out.println("Game not found");
+        }
+    }
+
+
+    public static void insertGame(EntityManager em) {
+        Game game1 = new Game();
+        game1.setTitle("Resident Evil Requiem");
+        game1.setReleaseDate(LocalDate.of(2026, 2, 12));
+        game1.setPrice(399.9);
+        game1.setDeveloper("Capcom");
+        game1.setFinished(true);
+        game1.setCategory("Horror");
+
+        GameDao gameDao = new GameDao(em);
         em.getTransaction().begin();
-//        gameDao.save(game2);
-//        gameDao.update(game2);
-        gameDao.delete(game2);
+        gameDao.save(game1);
         em.getTransaction().commit();
         em.close();
         System.out.println("Game created successfully");
+    }
+
+
+    public static void updateGame(EntityManager em) {
+        Game game1 = new Game();
+        game1.setId(41L);
+        game1.setTitle("Resident Evil 9 :Requiem");
+        game1.setReleaseDate(LocalDate.of(2026, 2, 12));
+        game1.setPrice(399.9);
+        game1.setDeveloper("Capcom");
+        game1.setFinished(true);
+        game1.setCategory("Horror");
+
+        GameDao gameDao = new GameDao(em);
+        em.getTransaction().begin();
+        gameDao.update(game1);
+        em.getTransaction().commit();
+        em.close();
+        System.out.println("Game updated successfully");
     }
 }

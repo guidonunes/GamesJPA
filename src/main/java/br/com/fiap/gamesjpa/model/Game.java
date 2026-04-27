@@ -83,4 +83,9 @@ public class Game {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + this.id + ", Title: " + this.title + ", ReleaseDate: " + this.releaseDate;
+    }
 }
