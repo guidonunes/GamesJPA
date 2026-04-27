@@ -41,6 +41,6 @@ public class Main {
         em.close();
         emf.close();
         System.out.println("Game created successfully");
-        
+
     }
 }
