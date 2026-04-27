@@ -20,17 +20,19 @@ public class Main {
         System.out.println("Connected successfully 🚀");
 
         Game game2 = new Game();
+        game2.setId(21L);
         game2.setTitle("Mafia");
         game2.setReleaseDate(LocalDate.of(2020, 2, 12));
-        game2.setPrice(199.9);
-        game2.setDeveloper("Eidos");
-        game2.setFinished(true);
-        game2.setCategory("Action");
+        game2.setPrice(99.9);
+        game2.setDeveloper("Activision, Remedy");
+        game2.setFinished(false);
+        game2.setCategory("Shooting");
 
 
 
         em.getTransaction().begin();
-        gameDao.save(game2);
+//        gameDao.save(game2);
+        gameDao.update(game2);
         em.getTransaction().commit();
         em.close();
         System.out.println("Game created successfully");

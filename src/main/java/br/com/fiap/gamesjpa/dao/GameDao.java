@@ -13,4 +13,8 @@ public class GameDao {
     public void save(Game game) {
         em.persist(game);
     }
+
+    public void update(Game game) {
+        em.merge(game);
+    }
 }
