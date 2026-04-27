@@ -32,11 +32,10 @@ public class Main {
 
         em.getTransaction().begin();
 //        gameDao.save(game2);
-        gameDao.update(game2);
+//        gameDao.update(game2);
+        gameDao.delete(game2);
         em.getTransaction().commit();
         em.close();
         System.out.println("Game created successfully");
-
     }
-
 }

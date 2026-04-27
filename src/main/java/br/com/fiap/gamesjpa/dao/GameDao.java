@@ -17,4 +17,9 @@ public class GameDao {
     public void update(Game game) {
         em.merge(game);
     }
+
+    public void delete(Game game) {
+        Game gameToDelete = em.find(Game.class, game.getId());
+        em.remove(gameToDelete);
+    }
 }
