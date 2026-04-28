@@ -28,6 +28,7 @@ public class Game {
     private Boolean finished;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Long getId() {

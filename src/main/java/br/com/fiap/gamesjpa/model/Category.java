@@ -2,6 +2,8 @@ package br.com.fiap.gamesjpa.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tbl_categories")
 public class Category {
@@ -21,6 +23,9 @@ public class Category {
     @Column(name = "name_category")
     private String categoryName;
 
+    @OneToMany(mappedBy = "category")
+    private List<Game> games;
+
     public Long getId() {
         return id;
     }
@@ -36,5 +41,18 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
+
+    @Override
+    public String toString() {
+        return "Category {" + "id: " + id + ", categoryName: " + categoryName + ", games: " + games + '}';
     }
 }

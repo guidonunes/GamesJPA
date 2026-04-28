@@ -13,4 +13,8 @@ public class CategoryDao {
     public void save(Category category) {
         em.persist(category);
     }
+
+    public Category findCategoryById(Category category) {
+        return em.find(Category.class, category.getId());
+    }
 }

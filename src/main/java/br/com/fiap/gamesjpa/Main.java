@@ -16,9 +16,10 @@ public class Main {
         EntityManager em = Connection.getEntityManager();
 
 //        search(em);
-        insertGame(em);
+        //insertGame(em);
         //listAllGames(em);
        // updateGame(em);
+        listCategoryById(em);
     }
 
     public static void listAllGames(EntityManager em) {
@@ -30,6 +31,13 @@ public class Main {
         }
     }
 
+    public static void listCategoryById(EntityManager em) {
+        CategoryDao categoryDao = new CategoryDao(em);
+        Category category = new Category();
+        category.setCategoryId(4L);
+        Category foundedCategory = categoryDao.findCategoryById(category);
+        System.out.println(foundedCategory);
+    }
 
     public static void search (EntityManager em) {
         GameDao dao = new GameDao(em);
@@ -49,16 +57,16 @@ public class Main {
 
     public static void insertGame(EntityManager em) {
         Category category = new Category();
-        category.setCategoryId(3L);
+        category.setCategoryId(4L);
 
-//        CategoryDao categoryDao = new CategoryDao(em);
+        //CategoryDao categoryDao = new CategoryDao(em);
         em.getTransaction().begin();
-//        categoryDao.save(category);
+        //categoryDao.save(category);
 
         Game game1 = new Game();
-        game1.setTitle("Horizon: Zero Dawn");
-        game1.setReleaseDate(LocalDate.of(2020, 03, 25));
-        game1.setPrice(399.9);
+        game1.setTitle("Death Stranding");
+        game1.setReleaseDate(LocalDate.of(2021, 06, 25));
+        game1.setPrice(299.9);
         game1.setDeveloper("Sony");
         game1.setFinished(false);
         game1.setCategory(category);
