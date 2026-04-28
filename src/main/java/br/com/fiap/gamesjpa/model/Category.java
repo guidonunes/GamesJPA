@@ -19,21 +19,22 @@ public class Category {
     private Long id;
 
     @Column(name = "name_category")
-    private String nameCategory;
+    private String categoryName;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setCategoryId(Long id) {
         this.id = id;
     }
 
-    public String getNomeCategoria() {
-        return nameCategory;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setNomeCategoria(String nomeCategoria) {
-        this.nameCategory = nameCategory;
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

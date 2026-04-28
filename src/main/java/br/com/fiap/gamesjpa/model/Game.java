@@ -26,7 +26,9 @@ public class Game {
     private Double price;
     private String developer;
     private Boolean finished;
-    private String category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
 
     public Long getId() {
         return id;
@@ -76,11 +78,11 @@ public class Game {
         this.finished = finished;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -92,7 +94,7 @@ public class Game {
                 "\nPrice: " + this.price +
                 "\nDeveloper: " + this.developer +
                 "\nFinished: " + this.finished +
-                "\nCategory: " + this.category +
+                "\nCategory: " + this.category.getCategoryName() +
                 "\n--------------------------";
     }
 }

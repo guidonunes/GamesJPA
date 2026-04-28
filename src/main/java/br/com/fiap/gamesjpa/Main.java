@@ -1,17 +1,14 @@
 package br.com.fiap.gamesjpa;
 
+import br.com.fiap.gamesjpa.dao.CategoryDao;
 import br.com.fiap.gamesjpa.dao.GameDao;
+import br.com.fiap.gamesjpa.model.Category;
 import br.com.fiap.gamesjpa.model.Game;
 import br.com.fiap.gamesjpa.utils.Connection;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,8 +16,8 @@ public class Main {
         EntityManager em = Connection.getEntityManager();
 
 //        search(em);
-        //insertGame(em);
-        listAllGames(em);
+        insertGame(em);
+        //listAllGames(em);
        // updateGame(em);
     }
 
@@ -51,16 +48,22 @@ public class Main {
 
 
     public static void insertGame(EntityManager em) {
+        Category category = new Category();
+        category.setCategoryId(3L);
+
+//        CategoryDao categoryDao = new CategoryDao(em);
+        em.getTransaction().begin();
+//        categoryDao.save(category);
+
         Game game1 = new Game();
-        game1.setTitle("Resident Evil Requiem");
-        game1.setReleaseDate(LocalDate.of(2026, 2, 12));
+        game1.setTitle("Horizon: Zero Dawn");
+        game1.setReleaseDate(LocalDate.of(2020, 03, 25));
         game1.setPrice(399.9);
-        game1.setDeveloper("Capcom");
-        game1.setFinished(true);
-        game1.setCategory("Horror");
+        game1.setDeveloper("Sony");
+        game1.setFinished(false);
+        game1.setCategory(category);
 
         GameDao gameDao = new GameDao(em);
-        em.getTransaction().begin();
         gameDao.save(game1);
         em.getTransaction().commit();
         em.close();
@@ -68,21 +71,21 @@ public class Main {
     }
 
 
-    public static void updateGame(EntityManager em) {
-        Game game1 = new Game();
-        game1.setId(41L);
-        game1.setTitle("Resident Evil 9 :Requiem");
-        game1.setReleaseDate(LocalDate.of(2026, 2, 12));
-        game1.setPrice(399.9);
-        game1.setDeveloper("Capcom");
-        game1.setFinished(true);
-        game1.setCategory("Horror");
-
-        GameDao gameDao = new GameDao(em);
-        em.getTransaction().begin();
-        gameDao.update(game1);
-        em.getTransaction().commit();
-        em.close();
-        System.out.println("Game updated successfully");
-    }
+//    public static void updateGame(EntityManager em) {
+//        Game game1 = new Game();
+//        game1.setId(41L);
+//        game1.setTitle("Resident Evil 9 :Requiem");
+//        game1.setReleaseDate(LocalDate.of(2026, 2, 12));
+//        game1.setPrice(399.9);
+//        game1.setDeveloper("Capcom");
+//        game1.setFinished(true);
+//        game1.setCategory("Horror");
+//
+//        GameDao gameDao = new GameDao(em);
+//        em.getTransaction().begin();
+//        gameDao.update(game1);
+//        em.getTransaction().commit();
+//        em.close();
+//        System.out.println("Game updated successfully");
+//    }
 }
