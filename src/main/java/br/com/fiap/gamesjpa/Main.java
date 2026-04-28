@@ -20,8 +20,8 @@ public class Main {
 
 //        search(em);
         //insertGame(em);
-        //listAllGames(em);
-        updateGame(em);
+        listAllGames(em);
+       // updateGame(em);
     }
 
     public static void listAllGames(EntityManager em) {
@@ -29,7 +29,7 @@ public class Main {
         List<Game> games = gameDao.listAllGames();
 
         for(Game game : games){
-            System.out.println(game.getTitle());
+            System.out.println(game);
         }
     }
 

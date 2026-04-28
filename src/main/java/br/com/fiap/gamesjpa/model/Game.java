@@ -86,6 +86,13 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Id: " + this.id + ", Title: " + this.title + ", ReleaseDate: " + this.releaseDate;
+        return "Id: " + this.id +
+                "\nTitle: " + this.title +
+                "\nReleaseDate: " + this.releaseDate +
+                "\nPrice: " + this.price +
+                "\nDeveloper: " + this.developer +
+                "\nFinished: " + this.finished +
+                "\nCategory: " + this.category +
+                "\n--------------------------";
     }
 }
